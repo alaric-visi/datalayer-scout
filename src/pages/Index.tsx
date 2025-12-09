@@ -306,17 +306,14 @@ const Index = () => {
                   <Github className="w-4 h-4" />
                   View on GitHub
                 </a>
-                <span className="text-muted-foreground text-sm">
-                  Made by{" "}
-                  <a
-                    href="https://mikehiggins.me.uk/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-foreground hover:text-accent transition-colors underline"
-                  >
-                    Mike Higgins
-                  </a>
-                </span>
+                <a
+                  href="https://mikehiggins.me.uk/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
+                >
+                  Made by Mike Higgins
+                </a>
               </div>
             </footer>
           </div>
