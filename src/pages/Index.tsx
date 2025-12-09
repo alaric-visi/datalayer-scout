@@ -177,7 +177,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       {/* Main Content with Side Image */}
       <main className="min-h-screen flex pt-16">
         {/* Left Content - Tool */}
@@ -297,7 +297,7 @@ const Index = () => {
             {/* Footer */}
             <footer className="py-6 mt-8 border-t border-border">
               <a
-                href="https://github.com/alaric-visi/datalayer-schema-extraction/"
+                href="https://github.com/alaric-visi/datalayer-scout/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
@@ -311,9 +311,9 @@ const Index = () => {
 
         {/* Right Side - Hero Image */}
         <div className="hidden lg:block w-1/2 relative">
-          <img 
-            src={heroImage} 
-            alt="Abstract data visualization" 
+          <img
+            src={heroImage}
+            alt="Abstract data visualization"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/30 to-transparent" />
