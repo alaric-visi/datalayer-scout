@@ -174,3 +174,47 @@
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-muted-foreground/40;
 }
+
+/* JSON Tree Viewer Styles */
+.json-tree-viewer {
+  @apply text-sm;
+}
+
+.json-viewer-container {
+  @apply font-mono;
+}
+
+.json-viewer-label {
+  @apply text-accent font-medium;
+}
+
+.json-viewer-string {
+  @apply text-green-400;
+}
+
+.json-viewer-number {
+  @apply text-blue-400;
+}
+
+.json-viewer-boolean {
+  @apply text-purple-400;
+}
+
+.json-viewer-null,
+.json-viewer-undefined {
+  @apply text-muted-foreground italic;
+}
+
+.json-viewer-punctuation {
+  @apply text-muted-foreground;
+}
+
+.json-viewer-collapse-icon,
+.json-viewer-expand-icon {
+  @apply text-muted-foreground cursor-pointer hover:text-foreground transition-colors;
+}
+
+.json-viewer-collapsed-content {
+  @apply text-muted-foreground/60 italic;
+}
+

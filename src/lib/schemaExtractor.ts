@@ -197,6 +197,65 @@ export async function simulateDataLayerExtraction(
     methods.push({ name: "Push Events", found: false });
   }
 
+  // Check for Adobe Analytics
+  onProgress("Checking for Adobe Analytics...");
+  await delay(500);
+
+  if (url.includes("whitespark.ca") || Math.random() > 0.6) {
+    methods.push({
+      name: "Adobe Analytics (window.s)",
+      found: true,
+      details: "SiteCatalyst tracking object",
+    });
+    dataLayer.push({
+      _adobeAnalytics: {
+        pageName: "Home Page",
+        channel: "Web",
+        events: "event1",
+      },
+    });
+    onLog("Found Adobe Analytics tracking", "success");
+  } else {
+    methods.push({ name: "Adobe Analytics (window.s)", found: false });
+  }
+
+  // Check for Adobe Launch
+  onProgress("Checking for Adobe Launch...");
+  await delay(500);
+
+  if (url.includes("whitespark.ca") || Math.random() > 0.7) {
+    methods.push({
+      name: "Adobe Launch (window._satellite)",
+      found: true,
+      details: "Adobe Experience Platform",
+    });
+    onLog("Found Adobe Launch", "success");
+  } else {
+    methods.push({ name: "Adobe Launch (window._satellite)", found: false });
+  }
+
+  // Check for Tealium
+  onProgress("Checking for Tealium...");
+  await delay(500);
+
+  if (url.includes("whitespark.ca") || Math.random() > 0.6) {
+    methods.push({
+      name: "Tealium (window.utag)",
+      found: true,
+      details: "Tealium iQ Tag Management",
+    });
+    dataLayer.push({
+      _tealium: {
+        tealium_event: "view",
+        page_name: "Home",
+        tealium_environment: "prod",
+      },
+    });
+    onLog("Found Tealium tag manager", "success");
+  } else {
+    methods.push({ name: "Tealium (window.utag)", found: false });
+  }
+
   return { dataLayer, methods };
 }
 

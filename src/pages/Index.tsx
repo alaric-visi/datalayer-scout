@@ -11,7 +11,7 @@ import {
   fetchAndExtractSchema,
   simulateDataLayerExtraction,
 } from "@/lib/schemaExtractor";
-import { Tag, Rocket, AlertCircle, CheckCircle, Github } from "lucide-react";
+import { Tag, Rocket, AlertCircle, CheckCircle, Github, Download } from "lucide-react";
 import heroImage from "@/assets/hero-abstract.png";
 
 interface LogEntry {
@@ -174,6 +174,30 @@ const Index = () => {
     }
   };
 
+  const exportToJSON = () => {
+    const exportData = {
+      url: currentUrl,
+      timestamp: new Date().toISOString(),
+      scanType: displayMode,
+      data: displayMode === "schema" ? schemaData : dataLayerData,
+      methods: methods,
+    };
+
+    const dataStr = JSON.stringify(exportData, null, 2);
+    const dataBlob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${displayMode}-export-${new Date().getTime()}.json`;
+    link.click();
+    URL.revokeObjectURL(url);
+
+    toast({
+      title: "Exported!",
+      description: "Data exported to JSON file",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -278,6 +302,21 @@ const Index = () => {
             {currentUrl && !isLoading && (
               <div className="bg-accent/10 rounded-lg p-3 mb-6 font-mono text-xs text-foreground break-all animate-fade-in">
                 Scanning: <span className="text-accent">{currentUrl}</span>
+              </div>
+            )}
+
+            {/* Export Button */}
+            {displayMode && (schemaData.length > 0 || dataLayerData.length > 0) && (
+              <div className="mb-6 animate-fade-in">
+                <Button
+                  onClick={exportToJSON}
+                  variant="outline"
+                  className="w-full sm:w-auto"
+                  size="sm"
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Export to JSON
+                </Button>
               </div>
             )}
 
